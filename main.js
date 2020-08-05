@@ -53,6 +53,7 @@ const carregarTarefas = () => {
 
 	const tarefasCadastradas = JSON.parse(localStorage.getItem('tarefas'))	
 
+		
 	if(tarefasCadastradas){
 		tarefas = [...tarefasCadastradas]
 	}
