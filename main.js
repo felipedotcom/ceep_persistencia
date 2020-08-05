@@ -14,6 +14,7 @@ const handleNovoItem = (evento) => {
 	const date = document.querySelector('[data-form-date]')
 	const data = date.value
 	const dataFormatada = moment(data).format('DD/MM/YYYY')
+	
 	const dados = {
 		valor, dataFormatada
 	}
