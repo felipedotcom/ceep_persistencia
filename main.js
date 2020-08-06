@@ -13,7 +13,7 @@ const handleNovoItem = (evento) => {
 	const valor = input.value
 	const date = document.querySelector('[data-form-date]')
 	const data = moment(date.value)
-	const dataFormatada = data.format('DD/MM/YYYY')
+	const dataFormatada = data.format('YYYYDDMM')
 	
 	const dados = {
 		valor, dataFormatada
@@ -60,10 +60,14 @@ const carregarTarefas = () => {
 		tarefas = [...tarefasCadastradas]
 	}
 
+	tarefas.sort((a, b) => parseFloat(a.dataFormatada) - parseFloat(b.dataFormatada));
+
+	
 	tarefas.forEach(( tarefa ) => {
 		lista.appendChild(criarTarefa(tarefa))
 	})
 
+	console.log(tarefas)
 }
 
 carregarTarefas()
