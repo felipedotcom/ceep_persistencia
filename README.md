@@ -1,6 +1,10 @@
 # ceep_persistencia
 
+https://medium.com/javascript-in-plain-english/everything-you-need-to-know-about-html5-local-storage-and-session-storage-479c63415c0a
+https://learning.oreilly.com/library/view/javascript-the-definitive/9781491952016/ch15.html
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 handleNovoItem 
+
  - selecionar data-form-date do calendario
  - pega o valor da data
  - cria um objeto que contem
