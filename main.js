@@ -14,27 +14,29 @@ const handleNovoItem = (evento) => {
 	const date = document.querySelector('[data-form-date]')
 	const data = moment(date.value)
 	const dataFormatada = data.format('YYYYDDMM')
-	
+
 	const dados = {
 		valor, dataFormatada
 	}
 
-	lista.appendChild(criarTarefa(dados))
-	
 	tarefas.push(dados)
 
 	localStorage.setItem('tarefas', JSON.stringify(tarefas))
 	
 	input.value = " "
+
+	carregarTarefas()
 }
 
 const criarTarefa = ({dataFormatada, valor}) => {
+	const data = moment(dataFormatada, 'YYYYDDMM').format('DD/MM/YYYY')
 
-	const tarefa = document.createElement('li')
+	const tarefa = document.createElement('li')	
 	tarefa.classList.add('task')
 	
 
-	const conteudo = `<p class="content">${dataFormatada} ${valor}</p>
+	const conteudo = `
+	<p class="content">${data} * ${valor}</p>
 
 	`
 	
@@ -52,7 +54,7 @@ novaTarefa.addEventListener('click', handleNovoItem)
 
 
 const carregarTarefas = () => {
-
+	lista.innerHTML = ''
 	const tarefasCadastradas = JSON.parse(localStorage.getItem('tarefas'))	
 
 		
@@ -60,14 +62,17 @@ const carregarTarefas = () => {
 		tarefas = [...tarefasCadastradas]
 	}
 
-	tarefas.sort((a, b) => parseFloat(a.dataFormatada) - parseFloat(b.dataFormatada));
+/* 	tarefas.sort((a, b) => (a.dataFormatada) - (b.dataFormatada));
+ */
+	 tarefas.sort((a, b) => {
+		const dataA = moment(a.dataFormatada, 'YYYYMMDD')
+		const dataB = moment(b.dataFormatada, 'YYYYMMDD')
+		return dataA.diff(dataB)
+	 })
 
-	
 	tarefas.forEach(( tarefa ) => {
 		lista.appendChild(criarTarefa(tarefa))
 	})
 
-	console.log(tarefas)
 }
-
 carregarTarefas()
