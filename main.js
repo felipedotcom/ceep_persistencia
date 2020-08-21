@@ -36,15 +36,20 @@ const handleNovoItem = (evento) => {
 
 const criarData = (dia) => {
 	const Dia = document.createElement('li') 
-	
 	Dia.innerHTML = dia.format('DD/MM/YYYY')
 
+
+	
 	tarefas.forEach((tarefa) => {
+		
+
 		const dataFormatada = moment(tarefa.dataFormatada, 'YYYYDDMM')
+
+		
 		const diff = dia.diff(dataFormatada)
 
 		if( diff === 0 ){ 
-		
+			
 			Dia.appendChild(criarTarefa(tarefa))
 		}
 	}) 
@@ -77,7 +82,7 @@ novaTarefa.addEventListener('click', handleNovoItem)
 
 
 const carregarTarefas = () => {
-	
+	const arri = []
 	lista.innerHTML = ''
 	const tarefasCadastradas = JSON.parse(localStorage.getItem('tarefas'))
 
@@ -96,8 +101,15 @@ const carregarTarefas = () => {
 		return item.dataFormatada
 	})
 
+	tarefas.forEach(element => {
+		if(arri.indexOf(element.dataFormatada) === -1){
+			arri.push(element.dataFormatada)
+			
+		}
+	})
+	console.log(arri)
 
-	datas.forEach((data)=> {
+	arri.forEach((data)=> {
 		const dia = moment(data, 'YYYYDDMM')
 		
 		lista.appendChild(criarData(dia))
@@ -107,6 +119,4 @@ const carregarTarefas = () => {
 
 }
 carregarTarefas()
-/* datas com array vazio
-push no outro array
-se nao adidciona   */
+
