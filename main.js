@@ -16,9 +16,10 @@ const handleNovoItem = (evento) => {
 	const data = moment(date.value)
 	const dataFormatada = data.format('YYYYDDMM')
 	const horario = data.format('HH:mm')
+	const concluida = false
 
 	const dados = {
-		valor, dataFormatada, horario
+		valor, dataFormatada, horario, concluida
 	}
 	
 	tarefas.push(dados)
@@ -27,20 +28,20 @@ const handleNovoItem = (evento) => {
 
 	input.value = " "
 
-	/* const tarefasCadastradas = JSON.parse(localStorage.getItem('tarefas')) */
-
 
 	carregarTarefas()
+	
 	
 }
 
 const criarData = (dia) => {
 	const Dia = document.createElement('li') 
-	Dia.innerHTML = dia.format('DD/MM/YYYY')
-
-
 	
-	tarefas.forEach((tarefa) => {
+	const conteudo = `
+			<p class="content-data"> ${dia.format('DD/MM/YYYY')}</p>
+		`
+	Dia.innerHTML = conteudo
+	tarefas.forEach((tarefa, index) => {
 		
 
 		const dataFormatada = moment(tarefa.dataFormatada, 'YYYYDDMM')
@@ -50,28 +51,35 @@ const criarData = (dia) => {
 
 		if( diff === 0 ){ 
 			
-			Dia.appendChild(criarTarefa(tarefa))
+			Dia.appendChild(criarTarefa(tarefa, index))
 		}
 	}) 
 	
 	return Dia
+
+	
 	
 }
 
-const criarTarefa = ({ dataFormatada, horario, valor }) => {
+const criarTarefa = ({ concluida, horario, valor}, id ) => {
 	
 
 	const tarefa = document.createElement('li')
+	
+	if( concluida ){
+		tarefa.classList.add('done')
+	}
+
 	tarefa.classList.add('task')
 
 	const conteudo = `
-	<p class="content">${horario} * ${valor}</p>
+	<p class="content"> ${horario} * ${valor}</p>
 	`
 
 	tarefa.innerHTML = conteudo
 
-	tarefa.appendChild(BotaoConclui())
-	tarefa.appendChild(BotaoDeleta())
+	tarefa.appendChild(BotaoConclui(carregarTarefas, id))
+	tarefa.appendChild(BotaoDeleta(carregarTarefas, id))
 
 	return tarefa
 }
@@ -104,10 +112,8 @@ const carregarTarefas = () => {
 	tarefas.forEach(element => {
 		if(arri.indexOf(element.dataFormatada) === -1){
 			arri.push(element.dataFormatada)
-			
 		}
 	})
-	console.log(arri)
 
 	arri.forEach((data)=> {
 		const dia = moment(data, 'YYYYDDMM')
@@ -118,5 +124,28 @@ const carregarTarefas = () => {
 
 
 }
+
+
+/*  const push = ( horario ) => { 
+	const showNotificacao = () => { 
+		const notification = new Notification('Você tem uma nova mensagem', {
+			body: 'fala cachorro'
+		})
+
+		return notification
+	}
+	
+	if (Notification.permission === 'granted') {
+		showNotificacao()
+	} else if (Notification.permission !== 'denied') {
+		Notification.requestPermission().then(permission => {
+			if(permission === 'granted') {
+				showNotificacao()
+			}
+		})
+	}
+} */
+ 
+
 carregarTarefas()
 
