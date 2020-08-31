@@ -10,7 +10,6 @@ import BotaoDeleta from './componentes/deletaTarefa.js'
     const valor = input.value
 	const calendario = document.querySelector('[data-form-date]')
 	const data = calendario.value
-	console.log(data)
     const tarefa = document.createElement('li')
     tarefa.classList.add('task')
     const conteudo = `<p class="content">${valor}</p>`
