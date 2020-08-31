@@ -2,7 +2,7 @@ import BotaoConclui from './componentes/concluiTarefa.js'
 import BotaoDeleta from './componentes/deletaTarefa.js'
 
 
-let tarefas = []
+
 const lista = document.querySelector('[data-list]')
 
 const handleNovoItem = (evento) => {
@@ -22,9 +22,10 @@ const handleNovoItem = (evento) => {
 
 	lista.appendChild(criarTarefa(dados))
 
-	tarefas.push(dados)
+	
 
-	localStorage.setItem('tarefas', tarefas)
+	localStorage.setItem('tarefas', JSON.stringify(dados))
+
 
 	input.value = " "
 }
