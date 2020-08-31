@@ -24,7 +24,7 @@ const handleNovoItem = (evento) => {
 
 	tarefas.push(dados)
 
-	localStorage.setItem('tarefas', tarefas)
+	localStorage.setItem('tarefas', JSON.stringify(dados))
 
 	input.value = " "
 }
