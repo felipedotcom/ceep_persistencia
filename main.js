@@ -29,7 +29,7 @@ const handleNovoItem = (evento) => {
 	input.value = " "
 
 
-	carregarTarefas()
+	carregarTarefas() 
 	
 	
 }
@@ -126,25 +126,6 @@ const carregarTarefas = () => {
 }
 
 
-/*  const push = ( horario ) => { 
-	const showNotificacao = () => { 
-		const notification = new Notification('Você tem uma nova mensagem', {
-			body: 'fala cachorro'
-		})
-
-		return notification
-	}
-	
-	if (Notification.permission === 'granted') {
-		showNotificacao()
-	} else if (Notification.permission !== 'denied') {
-		Notification.requestPermission().then(permission => {
-			if(permission === 'granted') {
-				showNotificacao()
-			}
-		})
-	}
-} */
  
 
 carregarTarefas()

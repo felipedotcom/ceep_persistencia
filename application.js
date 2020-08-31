@@ -20,7 +20,7 @@
       }
     });
   }; */
-
+/* 
   const timestamp = moment().format('HH:mm') 
   console.log(timestamp)
 
@@ -31,4 +31,4 @@
       body: "This notification was scheduled 30 seconds ago",
       showTrigger: new TimestampTrigger(timestamp + 30 * 1000)
     });
-  };
+  }; */
