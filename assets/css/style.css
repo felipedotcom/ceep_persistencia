@@ -123,13 +123,10 @@ body {
   margin-bottom: 0.5rem;
   padding: 1rem 3rem;
 }
-.delete-button{
-  margin-left: 8px;
-}
+
 .check-button, .delete-button {
   background-color: #F6F1D1;
   border: none;
-  margin-left: 4px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   outline: none;
   border-radius: 2px;
@@ -162,11 +159,4 @@ body {
   text-decoration: line-through;
 }
 
-.content-data { 
-  color: #F6F1D1;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 0.5rem;
-  padding: 1rem 3rem;
-}
 /*# sourceMappingURL=style.css.map */
