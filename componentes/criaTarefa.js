@@ -64,7 +64,7 @@ const lista = document.querySelector('[data-list]')
 export const handleNovoItem = (evento) => {
 
 	evento.preventDefault()
-	const tarefas = JSON.parse(localStorage.getItem('tarefas')) ||[]
+	const tarefas = localStorage.getItem('tarefas') ||[]
 
 	
 	const input = document.querySelector('[data-form-input]')
@@ -78,12 +78,10 @@ export const handleNovoItem = (evento) => {
 		valor, dataFormatada
 	}
 	
-	/* const tarefasAtualizadas = [...tarefas, dados]  */
+	const tarefasAtualizadas = [...tarefas, dados] 
 	lista.appendChild(Tarefa(dados))
 
-	/* tarefas.push(dados) */
-
-	localStorage.setItem('tarefas', JSON.stringify(tarefas))
+	localStorage.setItem('tarefas', JSON.stringify(tarefasAtualizadas))
 
 	input.value = " " 
 }
