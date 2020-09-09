@@ -90,7 +90,7 @@ novaTarefa.addEventListener('click', handleNovoItem)
 
 
 const carregarTarefas = () => {
-	const arri = []
+	const arri = [] //datas unicas
 	lista.innerHTML = ''
 	const tarefasCadastradas = JSON.parse(localStorage.getItem('tarefas'))
 
@@ -99,15 +99,15 @@ const carregarTarefas = () => {
 		tarefas = [...tarefasCadastradas]
 	}
 
-	tarefas.sort((a, b) => {
+	tarefas.sort((a, b) => { //ordenaDatas
 		const dataA = moment(a.dataFormatada, 'YYYYDDMM')
 		const dataB = moment(b.dataFormatada, 'YYYYDDMM')
 		return dataA.diff(dataB)
 	})
 
- 	const datas = tarefas.map((item) => {
+ 	/* const datas = tarefas.map((item) => {
 		return item.dataFormatada
-	})
+	}) */
 
 	tarefas.forEach(element => {
 		if(arri.indexOf(element.dataFormatada) === -1){
@@ -115,10 +115,10 @@ const carregarTarefas = () => {
 		}
 	})
 
-	arri.forEach((data)=> {
+	arri.forEach((data)=> { //removedatas repetidas
 		const dia = moment(data, 'YYYYDDMM')
 		
-		lista.appendChild(criarData(dia))
+			lista.appendChild(criarData(dia))
 
 	}) 
 
