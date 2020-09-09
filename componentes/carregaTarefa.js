@@ -5,7 +5,7 @@ export const carregaTarefas = () => {
 
 	const tarefasCadastradas = JSON.parse(localStorage.getItem('tarefas')) ||[]
 
-	/* lista.innerHTML = ''  *///limpa o 
+	lista.innerHTML = ''  ///limpa o 
 
 	tarefasCadastradas.forEach(( tarefa ) => {
 		lista.appendChild(Tarefa(tarefa))

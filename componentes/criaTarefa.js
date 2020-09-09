@@ -56,17 +56,17 @@ export const Tarefa = ({ dataFormatada, valor }) => {
 
 import BotaoConclui from '../componentes/concluiTarefa.js'
 import BotaoDeleta from '../componentes/deletaTarefa.js'
+import carregaTarefas from './carregaTarefa.js'
 
 
 
-const lista = document.querySelector('[data-list]')
+
 
 export const handleNovoItem = (evento) => {
 
 	evento.preventDefault()
-	const tarefas = localStorage.getItem('tarefas') ||[]
+	const tarefas = JSON.parse(localStorage.getItem('tarefas'))||[]
 
-	
 	const input = document.querySelector('[data-form-input]')
 	const valor = input.value
 	const calendario = document.querySelector('[data-form-date]')
@@ -79,11 +79,14 @@ export const handleNovoItem = (evento) => {
 	}
 	
 	const tarefasAtualizadas = [...tarefas, dados] 
-	lista.appendChild(Tarefa(dados))
+	
 
 	localStorage.setItem('tarefas', JSON.stringify(tarefasAtualizadas))
 
 	input.value = " " 
+	
+	carregaTarefas()
+	
 }
 
 export const Tarefa = ({ dataFormatada, valor }) => {
